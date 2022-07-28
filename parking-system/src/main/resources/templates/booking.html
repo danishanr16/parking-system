@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Parking Booking Form</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/js/bootstrap-datetimepicker.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.7.14/css/bootstrap-datetimepicker.min.css">
+
+        <script>
+        	$(function() {
+			  $('#endTime').datetimepicker();
+			  $('#startTimeText').val($('#stSpan').text());
+			  $('#slotName').val($('#slotNameText').text());
+			  console.log($('#startTimeText').val($('#stSpan').text()));
+			});
+        	/*jQuery(function () {
+			jQuery('#startDate').datetimepicker({
+		        stepping: 30,
+    			enabledHours: [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]
+		    });
+			jQuery("#startDate").on("dp.change",function (e) {
+		        jQuery('#endDate').data("DateTimePicker").setMinDate(e.date);
+			});
+			jQuery("#endDate").on("dp.change",function (e) {
+		        jQuery('#startDate').data("DateTimePicker").setMaxDate(e.date);
+			});
+		});*/
+        </script>
+    </head>
+    <body>
+        <div class="container">
+        	<form th:action="@{/bookslot}" method="post">
+        	<input type="hidden" name="startTimeText" id="startTimeText">
+        	<input type="hidden" name="slotName" id="slotName">
+	        	Slot Name  : <span th:text="${#httpServletRequest.requestURI.split('/')[2]}" id="slotNameText"></span></br>
+	        	Enter Name : <input type="text" name="name"></br>
+	        	Start Time : <span th:text="${#dates.format(#dates.createNow(),'YYYY/MM/dd HH:mm a')}" id="stSpan"></span>
+	        	End Time   : <div class="container">
+								<div class="col-sm-6" style="height:75px;">
+									<div class='col-md-5'>
+										<div class="form-group">
+											<div class='input-group date' id='endTime'>
+												<input type='text' class="form-control" name="endTimeText" />
+												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+	        	</br>
+	        	<input type="submit" value="Book Slot"/>
+	        </form>
+        </div>
+    </body>
+</html>

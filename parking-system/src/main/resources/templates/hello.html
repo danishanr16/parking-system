@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Dashboard</title>
+        <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="5" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+.mycenter {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+}
+.myrow {
+  margin-bottom: .3%;
+}
+</style>
+	<script type="text/javascript">
+		/* setTimeout(function(){
+		   window.location.reload(1);
+		   console.log('Refreshed ');
+		}, 5000); */
+	</script>
+    </head>
+    <body>
+	<div class="container">
+	  <div class="row">
+	    <div class="col-sm-6 text-center" style="font-size: x-large;">
+	      <h3>POC Exercise</h3>
+	      <div class="row" style="background-color:#3399ff;color: white;margin: auto;">OPEN PARKING SYSTEM</div>
+	    </div>
+	    <div class="col-sm-6 text-right" style="font-size: x-large;">
+	    	<div class="row" style="background-color:#3399ff;">
+			  <div class="col-sm-6" style="color: white;" >Total Slot</div>
+			  <div class="col-sm-4"><span th:text="${slots.totalSlots}"></span></div>
+			</div>
+			<div class="row" style="background-color:#cce6ff;">
+			  <div class="col-sm-6">Booked Slot</div>
+			  <div class="col-sm-4"><span th:text="${slots.bookedSlots}"></span></div>
+			</div>
+			<div class="row" style="background-color:#cce6ff;">
+			  <div class="col-sm-6" >Available Slot</div>
+			  <div class="col-sm-4"><span th:text="${slots.availableSlots}"></span></div>
+			</div>
+	    </div>
+	  </div>
+	  
+	  <div class="row mycenter" style="margin-top: 5%;">
+	    <div class="col-sm-12" style="font-size: 140%;">
+	    	<div class="row" style="background-color:#3399ff;margin-bottom: .5%;">
+			  <div class="col-sm-6" style="color: white;" >Total Slot</div>
+			  <div class="col-sm-4"><span th:text="${slots.totalSlots}"></span></div>
+			</div>
+			<div class="row myrow" style="background-color:#cce6ff;">
+			  <div class="col-sm-6">Booked Slot</div>
+			  <div class="col-sm-4"><span th:text="${slots.bookedSlots}"></span></div>
+			</div>
+			<div class="row myrow" style="background-color:#cce6ff;">
+			  <div class="col-sm-6" >Available Slot</div>
+			  <div class="col-sm-4"><span th:text="${slots.availableSlots}"></span></div>
+			</div>
+			<div class="row myrow" style="background-color:#cce6ff;">
+			  <div class="col-sm-6">SLOT A
+			  (Open)</div>
+			  <div class="col-sm-6">
+				<span th:each="slot:${slots.openSlotA}">
+					<span th:text="${slot.name}"></span>
+				</span>
+			  </div>
+			</div>
+			<div class="row myrow" style="background-color:#cce6ff;">
+			  <div class="col-sm-6" >SLOT B
+				(Open)</div>
+			  <div class="col-sm-6">
+				<span th:each="slot:${slots.openSlotB}">
+					<span th:text="${slot.name}"></span>
+				</span>
+			  </div>
+			</div>
+			<div class="row myrow" style="background-color:#cce6ff;">
+			  <div class="col-sm-6">SLOT C
+			  (Open)</div>
+			  <div class="col-sm-6">
+				<span th:each="slot:${slots.openSlotC}">
+					<span th:text="${slot.name}"></span>
+				</span>
+			  </div>
+			</div>
+	    </div>
+	  </div>
+	  
+	  <div class="container" style="font-size: 230%;margin-top: 5%;">
+		  <div class="row"><span class="col-md-3">SLOT A:&emsp;</span>
+			  <span class="col-md-9">
+			  	<span th:each="slot:${slots.slotA}">
+					<a th:href="@{/booking/{slotName}(slotName=${slot.name})}" class="btn btn-primary" th:if="${slot.isBooked}" style="background-color: #ff0000;padding: 1.5%;margin: .2%;" onclick="return false;">
+						<span th:text="${slot.name}"></span>
+					</a>
+    				<a th:href="@{/booking/{slotName}(slotName=${slot.name})}" class="btn btn-primary" th:unless="${slot.isBooked}" style="background-color: #00ff80;padding: 1.5%;margin: .2%;">
+    					<span th:text="${slot.name}"></span>
+    				</a>
+				</span>
+			  </span>
+		  </div>
+		  <div class="row"><span class="col-md-3">SLOT B:&emsp;</span>
+			  <span class="col-md-9">
+			  	<span th:each="slot:${slots.slotB}">
+					<a th:href="@{/booking/{slotName}(slotName=${slot.name})}" class="btn btn-primary" th:if="${slot.isBooked}" style="background-color: #ff0000;padding: 1.5%;margin: .2%;">
+						<span th:text="${slot.name}"></span>
+					</a>
+    				<a th:href="@{/booking/{slotName}(slotName=${slot.name})}" class="btn btn-primary" th:unless="${slot.isBooked}" style="background-color: #00ff80;padding: 1.5%;margin: .2%;">
+    					<span th:text="${slot.name}"></span>
+    				</a>
+				</span>
+			  </span>
+		  </div>
+		  <div class="row"><span class="col-md-3">SLOT C:&emsp;</span>
+			  <span class="col-md-9">
+			  	<span th:each="slot:${slots.slotC}">
+					<a th:href="@{/booking/{slotName}(slotName=${slot.name})}" class="btn btn-primary" th:if="${slot.isBooked}" style="background-color: #ff0000;padding: 1.5%;margin: .2%;">
+						<span th:text="${slot.name}"></span>
+					</a>
+    				<a th:href="@{/booking/{slotName}(slotName=${slot.name})}" class="btn btn-primary" th:unless="${slot.isBooked}" style="background-color: #00ff80;padding: 1.5%;margin: .2%;">
+    					<span th:text="${slot.name}"></span>
+    				</a>
+				</span>
+			  </span>
+		  </div>
+	  </div>
+	  
+	</div>
+    </body>
+</html>
