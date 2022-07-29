@@ -35,22 +35,34 @@
         	<form th:action="@{/bookslot}" method="post">
         	<input type="hidden" name="startTimeText" id="startTimeText">
         	<input type="hidden" name="slotName" id="slotName">
-	        	Slot Name  : <span th:text="${#httpServletRequest.requestURI.split('/')[2]}" id="slotNameText"></span></br>
-	        	Enter Name : <input type="text" name="name"></br>
-	        	Start Time : <span th:text="${#dates.format(#dates.createNow(),'YYYY/MM/dd HH:mm a')}" id="stSpan"></span>
-	        	End Time   : <div class="container">
-								<div class="col-sm-6" style="height:75px;">
-									<div class='col-md-5'>
-										<div class="form-group">
-											<div class='input-group date' id='endTime'>
-												<input type='text' class="form-control" name="endTimeText" />
-												<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-												</span>
-											</div>
-										</div>
-									</div>
+        	<div class="row">
+        		<label for="slotNameText" class="col-md-2">Slot Name :</label>
+	        	<span th:text="${#httpServletRequest.requestURI.split('/')[2]}" id="slotNameText"></span></br>
+        	</div>
+        	<div class="row">
+        		<label for="name" class="col-md-2">Enter Name :</label>
+	        	 <input type="text" name="name"></br>
+        	</div>
+        	<div class="row">
+        		<label for="name" class="col-md-2">Start Time :</label>
+	        	 <span th:text="${#dates.format(#dates.createNow(),'YYYY/MM/dd HH:mm a')}" id="stSpan"></span></br>
+        	</div>
+        	<div class="row">
+        		<label for="name" class="col-md-2">End Time :</label>
+	        	<div class="container">
+					<div class="col-sm-8" style="height:75px;padding-left: 0%;">
+						<div class="col-md-5" style="padding-left: 0%;">
+							<div class="form-group">
+								<div class='input-group date' id='endTime'>
+									<input type='text' class="form-control" name="endTimeText" />
+									<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+									</span>
 								</div>
 							</div>
+						</div>
+					</div>
+				</div>
+        	</div>
 	        	</br>
 	        	<input type="submit" value="Book Slot"/>
 	        </form>
